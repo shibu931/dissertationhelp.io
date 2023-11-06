@@ -1,3 +1,261 @@
-:root{
-    --primary:#2f2f2f;
+:root {
+    --primary: #091C35;
+    --cursive-font: 'Parisienne', cursive;
+    --font-primary: #E85735;
+}
+
+body{
+    background-color: #f5f4f4!important;
+}
+
+.navbar-nav li a {
+    color: var(--primary) !important;
+}
+
+.dropdown-menu li a {
+    color: var(--primary) !important;
+}
+
+p {
+    color: var(--primary);
+}
+
+footer {
+    background-color: var(--primary);
+}
+
+.social i {
+    transition: transform 0.2s;
+}
+
+.social i:hover {
+    transform: scale(120%);
+}
+
+.gradient-1 {
+    position: absolute;
+    left: -20%;
+    top: -30%;
+    width: 135%;
+    opacity: 0.8;
+    z-index: -1;
+}
+
+.flyer {
+    position: relative;
+    left: -10%;
+}
+
+.primary-text {
+    color: var(--primary);
+}
+
+.font-orange {
+    color: var(--font-primary);
+}
+
+.font-cursive {
+    font-family: var(--cursive-font);
+}
+
+u {
+    text-decoration-color: #e85635ce;
+    text-underline-offset: 8px;
+    text-decoration-thickness: 4px;
+}
+
+.nav-item {
+    padding-left: 0.35rem;
+    padding-right: 0.35rem;
+}
+
+.primary-btn {
+    color: white;
+    font-weight: 600;
+    text-decoration: none;
+    background: linear-gradient(180deg, #ee806f, #E33B2C);
+    border: 2px solid #E33B2C;
+}
+
+.primary-btn::after {
+    content: "\f061";
+    margin-left: 10px;
+    font: var(--fa-font-solid);
+}
+
+.primary-btn:hover {
+    transform: translateY(-10px);
+    color: #fff !important;
+}
+
+.fw-600 {
+    font-weight: 600;
+}
+
+.gradient-2 {
+    position: relative;
+}
+
+.process-container{
+    height: 500px;
+    width: 100%;
+    background: url("../img/gradient2.webp");
+    background-size: contain;
+    /* background-position: center; */
+    background-repeat: repeat-x;
+}
+
+.social-proof{
+    background: linear-gradient(180deg, rgba(188,226,237,0.2) ,transparent);
+}
+
+.rating-card{
+    margin: 0 20px;
+    background-color: white;
+    box-shadow: 0px 0px 10px 0px rgba(47,47,47,0.1);
+}
+.rating-card span{
+    margin-right: 5px;
+}
+
+.benefits-content{
+    background-color: rgba(255,255,255,0.5);
+}
+
+.benefits-content h3{
+    color: #2f2f2f;
+}
+
+.benefits-content p{
+    color: rgba(47,47,47,.7);
+}
+
+.benefits-box{
+    position: relative;
+}
+.benefits-box img{
+    position: relative;
+    bottom: -50px;
+}
+
+.process-card{
+    width: 100%;
+    height: 300px;
+    position: relative;
+    border-radius: 20px;
+    backdrop-filter: blur(75px) saturate(180%);
+    -webkit-backdrop-filter: blur(75px) saturate(180%);
+    background-color: rgba(245,245,245,0.5);
+    border: 3px solid rgba(242,242,242,.80);
+}
+
+.process-card::before{
+    content: "";
+    position: absolute;
+    width: 103%;
+    height: 300px;
+    border-radius: 20px;
+    filter: blur(6px);
+    top: 0;
+    left: -5px;
+    border: 3px solid rgba(242,242,242,.80);
+}
+
+.process-card p{
+    color: rgba(47,47,47,.8);
+}
+
+.service-card{
+    height: 440px;
+    position: relative;
+    z-index: 2;
+    border-radius: 30px;
+    transition: transform 0.2s ease-in-out;
+}
+.service-card h3,p{
+    position: relative;
+    z-index: 4;
+}
+.service-card:hover{
+    transform: translateY(-10px);
+    box-shadow: 0px 10px 20px 0 rgba(47,47,47,.3);
+}
+.service-card::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+    background: linear-gradient(130deg,rgba(255,255,255,0.4),transparent);
+}
+
+.accordion-button:focus{
+    border: unset;
+    box-shadow: unset!important;
+}
+.accordion-button:not(.collapsed){
+    background-color: white!important;
+    color: #2f2f2f!important;
+}
+
+.accordion-button{
+    background-color: white!important;
+    border: 1px solid #2f2f2f!important;
+    padding: 25px 20px!important;
+    border-radius: 20px!important;
+}
+
+.accordion-item{
+    margin-bottom: 20px;
+    background-color: white!important;
+    border-radius: 20px!important;
+}
+
+.review-card{
+    background-color: white;
+    border-radius: 10px;
+}
+
+
+.whatsAppCTAWrp {position: fixed;bottom: 20px;left: 21px;z-index: 999;background: #25d366;width: 45px;height: 45px;border-radius: 7px;transition: ease all 0.5s;box-shadow: 1px 1px 4px #777;overflow: hidden;}
+.whtIcon img {width: 30px;margin: 0px auto;text-align: center;}
+.whatsAppCTAWrp p a {padding: 5px 5px;color: #fff;display: inline-block;line-height: normal;overflow: hidden;width: 100%;text-align: center;margin: 0px auto;}
+.whtIcon {float: left;width: auto;padding: 0 0px 0 0;margin-left: 3px;}
+span.whatsAppText { float: left; width: 84%; text-align: left; text-align-last: left; padding: 1px 0 0; display: none; }
+.whatsAppText strong { width: 100%; float: left; font-size: 15px; line-height: 15px; }
+.whatsAppText small { font-size: 14px; }
+.whatsAppCTAWrp:hover { width: 250px; }
+.whatsAppCTAWrp:hover .whatsAppText{display: block;}
+.whatsAppCTAWrp p { display: block; height: 100%; text-align: center;}
+.btnhover .mt_btn_white-bor{color: #fff}
+.btnhover .mt_btn_white-bor:before{    background-color: #31b8a8;}
+.btnhover .mt_btn_white-bor.on-hover {opacity: 0;position: absolute;left: 0;top: 0;}
+.btnhover {display: inline-block;position: relative;margin-left: 5px;width: 76%;transition: all 400ms ease;}
+.btnhover:hover .mt_btn_white-bor.on-hover {opacity: 1;transition: all 200ms ease;border: 2px solid #fff;padding: 8px 20px;display: inline-block;border-radius: 5px;}
+.btnhover:hover .mt_btn_white-bor {opacity: 0;}
+.whatsAppCTAWrp {
+position: fixed;
+bottom: 20px;
+left: 21px;
+z-index: 1;
+background: #25d366;
+width: 45px;
+height: 45px;
+border-radius: 7px;
+transition: ease all 0.5s;
+box-shadow: 1px 1px 4px #777;
+overflow: hidden;
+}
+.whatsAppCTAWrp p {
+display: block;
+height: 100%;
+text-align: center;
+}
+.whtIcon img {
+width: 30px;
+margin: 0px auto;
+text-align: center;
 }
