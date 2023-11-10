@@ -2,10 +2,11 @@
     --primary: #091C35;
     --cursive-font: 'Parisienne', cursive;
     --font-primary: #E85735;
+    --primary-gradient:linear-gradient(180deg, #684ac9, #4926bb);
 }
 
-body{
-    background-color: #f5f4f4!important;
+body {
+    background-color: #f5f4f4 !important;
 }
 
 .navbar-nav li a {
@@ -51,17 +52,11 @@ footer {
 }
 
 .font-orange {
-    color: var(--font-primary);
+    color: #684ac9;
 }
 
 .font-cursive {
     font-family: var(--cursive-font);
-}
-
-u {
-    text-decoration-color: #e85635ce;
-    text-underline-offset: 8px;
-    text-decoration-thickness: 4px;
 }
 
 .nav-item {
@@ -73,8 +68,8 @@ u {
     color: white;
     font-weight: 600;
     text-decoration: none;
-    background: linear-gradient(180deg, #ee806f, #E33B2C);
-    border: 2px solid #E33B2C;
+    background: var(--primary-gradient);
+    border: 2px solid #4926bb;
 }
 
 .primary-btn::after {
@@ -96,8 +91,8 @@ u {
     position: relative;
 }
 
-.process-container{
-    height: 500px;
+.process-container {
+    min-height: 500px;
     width: 100%;
     background: url("../img/gradient2.webp");
     background-size: contain;
@@ -105,51 +100,60 @@ u {
     background-repeat: repeat-x;
 }
 
-.social-proof{
-    background: linear-gradient(180deg, rgba(188,226,237,0.2) ,transparent);
+.social-proof {
+    background: linear-gradient(180deg, rgba(188, 226, 237, 0.2), transparent);
 }
 
-.rating-card{
+.rating-card {
     margin: 0 20px;
     background-color: white;
-    box-shadow: 0px 0px 10px 0px rgba(47,47,47,0.1);
+    box-shadow: 0px 0px 10px 0px rgba(47, 47, 47, 0.1);
 }
-.rating-card span{
+
+.rating-card span {
     margin-right: 5px;
 }
 
-.benefits-content{
-    background-color: rgba(255,255,255,0.5);
+.benefits-content {
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
-.benefits-content h3{
+@media screen and (min-width:1199px) {
+    .benefits-content {
+        min-height: 320px;
+    }
+
+}
+
+.benefits-content h3 {
     color: #2f2f2f;
 }
 
-.benefits-content p{
-    color: rgba(47,47,47,.7);
+.benefits-content p {
+    color: rgba(47, 47, 47, .7);
 }
 
-.benefits-box{
+.benefits-box {
     position: relative;
 }
-.benefits-box img{
+
+.benefits-box img {
     position: relative;
     bottom: -50px;
 }
 
-.process-card{
+.process-card {
     width: 100%;
     height: 300px;
     position: relative;
     border-radius: 20px;
     backdrop-filter: blur(75px) saturate(180%);
     -webkit-backdrop-filter: blur(75px) saturate(180%);
-    background-color: rgba(245,245,245,0.5);
-    border: 3px solid rgba(242,242,242,.80);
+    background-color: rgba(245, 245, 245, 0.5);
+    border: 3px solid rgba(242, 242, 242, .80);
 }
 
-.process-card::before{
+.process-card::before {
     content: "";
     position: absolute;
     width: 103%;
@@ -158,29 +162,33 @@ u {
     filter: blur(6px);
     top: 0;
     left: -5px;
-    border: 3px solid rgba(242,242,242,.80);
+    border: 3px solid rgba(242, 242, 242, .80);
 }
 
-.process-card p{
-    color: rgba(47,47,47,.8);
+.process-card p {
+    color: rgba(47, 47, 47, .8);
 }
 
-.service-card{
+.service-card {
     height: 440px;
     position: relative;
     z-index: 2;
     border-radius: 30px;
     transition: transform 0.2s ease-in-out;
 }
-.service-card h3,p{
+
+.service-card h3,
+p {
     position: relative;
     z-index: 4;
 }
-.service-card:hover{
+
+.service-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0px 10px 20px 0 rgba(47,47,47,.3);
+    box-shadow: 0px 10px 20px 0 rgba(47, 47, 47, .3);
 }
-.service-card::after{
+
+.service-card::after {
     content: "";
     position: absolute;
     top: 0;
@@ -189,73 +197,294 @@ u {
     width: 100%;
     height: 100%;
     border-radius: 30px;
-    background: linear-gradient(130deg,rgba(255,255,255,0.4),transparent);
+    background: linear-gradient(130deg, rgba(255, 255, 255, 0.4), transparent);
 }
 
-.accordion-button:focus{
+.accordion-button:focus {
     border: unset;
-    box-shadow: unset!important;
-}
-.accordion-button:not(.collapsed){
-    background-color: white!important;
-    color: #2f2f2f!important;
+    box-shadow: unset !important;
 }
 
-.accordion-button{
-    background-color: white!important;
-    border: 1px solid #2f2f2f!important;
-    padding: 25px 20px!important;
-    border-radius: 20px!important;
+.accordion-button:not(.collapsed) {
+    background-color: white !important;
+    color: #2f2f2f !important;
 }
 
-.accordion-item{
+.accordion-button {
+    background-color: white !important;
+    border: 1px solid #2f2f2f !important;
+    padding: 25px 20px !important;
+    border-radius: 20px !important;
+}
+
+.accordion-item {
     margin-bottom: 20px;
-    background-color: white!important;
-    border-radius: 20px!important;
+    background-color: white !important;
+    border-radius: 20px !important;
 }
 
-.review-card{
+.review-card {
     background-color: white;
     border-radius: 10px;
 }
 
 
-.whatsAppCTAWrp {position: fixed;bottom: 20px;left: 21px;z-index: 999;background: #25d366;width: 45px;height: 45px;border-radius: 7px;transition: ease all 0.5s;box-shadow: 1px 1px 4px #777;overflow: hidden;}
-.whtIcon img {width: 30px;margin: 0px auto;text-align: center;}
-.whatsAppCTAWrp p a {padding: 5px 5px;color: #fff;display: inline-block;line-height: normal;overflow: hidden;width: 100%;text-align: center;margin: 0px auto;}
-.whtIcon {float: left;width: auto;padding: 0 0px 0 0;margin-left: 3px;}
-span.whatsAppText { float: left; width: 84%; text-align: left; text-align-last: left; padding: 1px 0 0; display: none; }
-.whatsAppText strong { width: 100%; float: left; font-size: 15px; line-height: 15px; }
-.whatsAppText small { font-size: 14px; }
-.whatsAppCTAWrp:hover { width: 250px; }
-.whatsAppCTAWrp:hover .whatsAppText{display: block;}
-.whatsAppCTAWrp p { display: block; height: 100%; text-align: center;}
-.btnhover .mt_btn_white-bor{color: #fff}
-.btnhover .mt_btn_white-bor:before{    background-color: #31b8a8;}
-.btnhover .mt_btn_white-bor.on-hover {opacity: 0;position: absolute;left: 0;top: 0;}
-.btnhover {display: inline-block;position: relative;margin-left: 5px;width: 76%;transition: all 400ms ease;}
-.btnhover:hover .mt_btn_white-bor.on-hover {opacity: 1;transition: all 200ms ease;border: 2px solid #fff;padding: 8px 20px;display: inline-block;border-radius: 5px;}
-.btnhover:hover .mt_btn_white-bor {opacity: 0;}
 .whatsAppCTAWrp {
-position: fixed;
-bottom: 20px;
-left: 21px;
-z-index: 1;
-background: #25d366;
-width: 45px;
-height: 45px;
-border-radius: 7px;
-transition: ease all 0.5s;
-box-shadow: 1px 1px 4px #777;
-overflow: hidden;
+    position: fixed;
+    bottom: 20px;
+    left: 21px;
+    z-index: 999;
+    background: #25d366;
+    width: 45px;
+    height: 45px;
+    border-radius: 7px;
+    transition: ease all 0.5s;
+    box-shadow: 1px 1px 4px #777;
+    overflow: hidden;
 }
-.whatsAppCTAWrp p {
-display: block;
-height: 100%;
-text-align: center;
-}
+
 .whtIcon img {
-width: 30px;
-margin: 0px auto;
-text-align: center;
+    width: 30px;
+    margin: 0px auto;
+    text-align: center;
+}
+
+.whatsAppCTAWrp p a {
+    padding: 5px 5px;
+    color: #fff;
+    display: inline-block;
+    line-height: normal;
+    overflow: hidden;
+    width: 100%;
+    text-align: center;
+    margin: 0px auto;
+}
+
+.whtIcon {
+    float: left;
+    width: auto;
+    padding: 0 0px 0 0;
+    margin-left: 3px;
+}
+
+span.whatsAppText {
+    float: left;
+    width: 84%;
+    text-align: left;
+    text-align-last: left;
+    padding: 1px 0 0;
+    display: none;
+}
+
+.whatsAppText strong {
+    width: 100%;
+    float: left;
+    font-size: 15px;
+    line-height: 15px;
+}
+
+.whatsAppText small {
+    font-size: 14px;
+}
+
+.whatsAppCTAWrp:hover {
+    width: 250px;
+}
+
+.whatsAppCTAWrp:hover .whatsAppText {
+    display: block;
+}
+
+.whatsAppCTAWrp p {
+    display: block;
+    height: 100%;
+    text-align: center;
+}
+
+.btnhover .mt_btn_white-bor {
+    color: #fff
+}
+
+.btnhover .mt_btn_white-bor:before {
+    background-color: #31b8a8;
+}
+
+.btnhover .mt_btn_white-bor.on-hover {
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.btnhover {
+    display: inline-block;
+    position: relative;
+    margin-left: 5px;
+    width: 76%;
+    transition: all 400ms ease;
+}
+
+.btnhover:hover .mt_btn_white-bor.on-hover {
+    opacity: 1;
+    transition: all 200ms ease;
+    border: 2px solid #fff;
+    padding: 8px 20px;
+    display: inline-block;
+    border-radius: 5px;
+}
+
+.btnhover:hover .mt_btn_white-bor {
+    opacity: 0;
+}
+
+.whatsAppCTAWrp {
+    position: fixed;
+    bottom: 20px;
+    left: 21px;
+    z-index: 1;
+    background: #25d366;
+    width: 45px;
+    height: 45px;
+    border-radius: 7px;
+    transition: ease all 0.5s;
+    box-shadow: 1px 1px 4px #777;
+    overflow: hidden;
+}
+
+.whatsAppCTAWrp p {
+    display: block;
+    height: 100%;
+    text-align: center;
+}
+
+.whtIcon img {
+    width: 30px;
+    margin: 0px auto;
+    text-align: center;
+}
+
+
+.benefits-list {
+    background: linear-gradient(to right, #684ac9, #4926bb);
+    padding: 20px;
+    border-radius: 20px;
+    position: relative;
+    z-index: 9;
+    font-weight: 400;
+    font-size: 22px;
+    margin-bottom: 20px;
+    transition: all 0.2s ease-in-out;
+}
+
+.benefits-list::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    border-radius: 20px;
+    top: -2px;
+    right: 2px;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    transition: all 0.2s ease-in-out;
+}
+
+.benefits-list:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 2px 10px 0px rgba(47, 47, 47, .2);
+}
+
+
+/* Tab Section */
+.tab-content .tab-pane {
+    border-radius: 5px;
+    padding: 30px;
+    background-color: white;
+    box-shadow: var(--bs-box-shadow-md) !important;
+}
+
+.nav-tabs {
+    background-color: white;
+    border-radius: 100px !important;
+    border: 1px solid #2f2f2f !important;
+    padding: 15px !important;
+}
+
+.nav-tabs .nav-link {
+    border-radius: 100px !important;
+    border: 0;
+    padding: 10px 25px;
+    transition: all 0.3s;
+}
+
+.nav-tabs .nav-link {
+    margin-right: 15px;
+}
+
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-link:focus,
+.nav-tabs .nav-link:hover {
+    background: var(--primary-gradient)!important;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, .175);
+    color: #f2f2f2!important;
+}
+
+.nav-tabs h5 {
+    color: #2f2f2f;
+    margin-bottom: 0;
+}
+
+.nav-tabs .nav-link.active h5,
+.nav-tabs .nav-link:focus h5,
+.nav-tabs .nav-link:hover h5 {
+    color: #f2f2f2;
+}
+
+/* Tab Section End */
+
+.services-card:hover{
+    transform: translateY(-6px);
+}
+
+.services-card{
+    display: flex;
+    min-width: 320px;
+    color: white!important;
+    border-radius: 20px;
+    padding: 10px 20px;
+    background: var(--primary-gradient);
+    border: 1px solid white;
+    position: relative;
+    transition: all 0.2s ease-in-out;
+}
+
+.services-card::before{
+    content: "";
+    position: absolute;
+    left: -2px;
+    top: 0;
+    width: 60px;
+    height: 100%;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    background-color: rgba(250,250,250,1);
+    z-index: 2;
+}
+
+.services-card img{
+    width: 30px;
+    position: relative;
+    z-index: 3;
+    background-color: rgba(250,250,250,1);
+}
+
+.gradient-box{
+    background: var(--primary-gradient);
+    color: whitesmoke;
+    border-radius: 40px;
+}
+
+.fw-200{
+    font-weight: 200!important;
 }
