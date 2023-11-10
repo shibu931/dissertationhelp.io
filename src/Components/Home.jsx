@@ -425,6 +425,12 @@ export default function Home() {
                 </div>
             </div>
 
+            <div className="container my-5 py-4">
+                <h2>About Us</h2>
+                <p>Our dissertation help has a trusted name in the dissertation writing industry. We have been delivering help with dissertation for more than a decade. The motive behind the establishment of our online dissertation help has always been helping students from different domains with excellent dissertation writing. We are a group of capable dissertation experts from different academic fields with excellent knowledge of the subject. We have 2500+ PhD-level dissertation writers who have helped 10000+ students in the past decade.</p>
+                <p>Indeed, those are breathtaking numbers alright, and yet our online dissertation writing expert thinks there is more to be achieved. We have a competent team of dissertation writer that helps students, and in turn, makes finer work faster and more effective. For this purpose, we as a dissertation help shall emphasize technical excellence, applied science, and excellent client service as we strive to scale new heights that will surpass previous performance levels where we will execute our duties intensely and gracefully. Don’t worry; we will remain your trusted companion throughout your academic journey.</p>
+            </div>
+
             <div className="reviews-container pt-5">
                 <div className="container">
                     <div className="row">
