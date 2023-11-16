@@ -3,38 +3,22 @@ import React from 'react'
 export default function Footer() {
     return (
         <footer>
-            <h2 class="text-light text-center fs-3 py-2">Lorem ipsum dolor sit amet consectetur.</h2>
             <hr class="text-light bg-light" />
-            <div class="container">
+            <div class="container pt-3">
                 <div class="row">
                     <div class="col-md-4">
-                        <h3 class="text-light">Lorem, ipsum.</h3>
-                        <ul class="list-unstyled">
-                            <li><a href="" class="text-light text-decoration-none"><span><i class="fa-regular fa-file-lines"></i></span> Terms & Conditions</a></li>
-                            <li><a href="" class="text-light text-decoration-none"><span><i class="fa-solid fa-money-check-dollar"></i></span> Pricing</a></li>
-                            <li><a href="" class="text-light text-decoration-none"><span><i class="fa-regular fa-copyright"></i></span> Cancellation And Refund Policy</a></li>
-                            <li><a href="" class="text-light text-decoration-none"><span><i class="fa-solid fa-user"></i></span> Privacy Policy</a></li>
-                            <li><a href="" class="text-light text-decoration-none"><span><i class="fa-solid fa-truck-fast"></i></span> Shipping And Delivery</a></li>
-                        </ul>
+                        <img src="./assets/img/dissertationhelp-logo-white-svg.svg" className='mb-2' alt="Dissertation Help" loading='lazy'/>
+                        <h3 className='text-white fs-6 fw-200'>Dissertation Help That Will Sift Away Your Academic Troubles!</h3>
                     </div>
                     <div class="col-md-4">
-                        <h3 class="text-light">Services</h3>
-                        <ul class="list-unstyled">
-                            <li><a href="" class="text-light text-decoration-none">Online Tutoring</a></li>
-                            <li><a href="" class="text-light text-decoration-none">One to One Tutoring</a></li>
-                            <li><a href="" class="text-light text-decoration-none">Content Writing</a></li>
-                            <li><a href="" class="text-light text-decoration-none">Writing Help</a></li>
-                            <li><a href="" class="text-light text-decoration-none">Blog</a></li>
-                            <li><a href="" class="text-light text-decoration-none">Contact Us</a></li>
-                            <li><a href="" class="text-light text-decoration-none">About Us</a></li>
-                        </ul>
+
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4" id='contact'>
                         <h3 class="text-light">Contact</h3>
                         <ul class="list-unstyled">
-                            <li><a href="" class="text-light text-decoration-none"><i class="fa-solid fa-phone"></i> +91 931-832-5049</a></li>
-                            <li><a href="" class="text-light text-decoration-none"><i class="fa-regular fa-envelope"></i> help@learnwithfraternity.com</a></li>
-                            <li><a href="" class="text-light text-decoration-none"><i class="fa-solid fa-location-dot"></i> Learn With Fraternity Pvt. Ltd. D-62,Noida,Sector 2</a></li>
+                            <li><a href="tel:+447418343403" class="text-light text-decoration-none"><i class="fa-solid fa-phone"></i> +44 7418 343403</a></li>
+                            <li><a href="mailto:info@dissertationhelp.io" class="text-light text-decoration-none"><i class="fa-regular fa-envelope"></i> info@dissertationhelp.io</a></li>
+                            <li><a  class="text-light text-decoration-none"><i class="fa-solid fa-location-dot"></i> 148 Broadhurst Gardens, London, UK - NW63BH</a></li>
                             <li class="my-3">
                             </li>
                         </ul>
@@ -42,7 +26,8 @@ export default function Footer() {
                 </div>
             </div>
             <hr class="text-light bg-light mb-1" />
-            <h2 class="text-light text-center mb-0 pb-2 py-2 fs-5">&#169; 2023 Learnwithfraternity.com | Powered by Learn With Fraternity Pvt. Ltd.</h2>
+            <h2 class="text-light text-center mb-0 pb-2 py-2 fs-5 mb-4">Copyright &#169; 2010-2023 | Dissertationhelp.io | All rights reserved</h2>
+            <p className='text-center text-white mb-0 pb-4 container'><strong>Disclaimer</strong> Dissertationhelp.io provides academic materials, including assignments, essays, research papers, and presentations, for reference purposes only. We do not endorse plagiarism. Users are expected to utilize these resources solely for their writing endeavours</p>
         </footer>
     )
 }

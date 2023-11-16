@@ -4,8 +4,19 @@ import 'owl.carousel/dist/assets/owl.theme.default.css';
 import OwlCarousel from 'react-owl-carousel';
 
 export default function ReviewCarousel({ item }) {
+    const options = {
+        items: 3,
+        responsive: {
+          0: {
+            items: 1,
+          },
+          1000: {
+            items: 2,
+          },
+        },
+      };
     return (
-        <OwlCarousel items={2} margin={30} autoplay={true} >
+        <OwlCarousel responsive={options.responsive} margin={30} autoplay={true} >
             {
                 item?.map((element, index) => {
                     return (

@@ -1,11 +1,23 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import ServiceCarousel from './ServiceCarousel'
 import FaqsAccordion from './FaqsAccordion'
 import ReviewCarousel from './ReviewCarousel'
 import { Link } from 'react-router-dom'
-
+import Form from './Form'
 
 export default function Home() {
+    const bannerRef = useRef(null);
+    const navbarRef = useRef(null)
+
+    const [isNavbarSticky, setIsNavbarSticky] = useState(false);
+
+    const closeNav = () => {
+        let a = document.getElementById('navButton')
+        a.classList.add('collapsed')
+        let b = document.getElementById('navbarSupportedContent')
+        b.classList.remove('show')
+    };
+
     const Service = [{
         color: "danger",
         title: "Undergraduate Dissertation Help",
@@ -113,338 +125,413 @@ export default function Home() {
     {
         content: "Zero Stress"
     }]
-    const services2 = ["Law ","Nursing","Economics","Finance","Psychology","Statistics","Accounting","Anthropology","Architecture","Biomedical Science","Business","Chemistry","Civil engineering","Computer Science","Data analysis","English","Fashion","Geography","Healthcare"]
+    const services2 = ["Law ", "Nursing", "Economics", "Finance", "Psychology", "Statistics", "Accounting", "Anthropology", "Architecture", "Business", "Chemistry", "Civil engineering", "Computer Science", "Data analysis", "English", "Fashion", "Geography", "Healthcare"]
+    useEffect(() => {
+        const handleIntersection = (entries) => {
+            entries.forEach((entry) => {
+                setIsNavbarSticky(!entry.isIntersecting);
+            });
+        };
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.5,
+        };
+
+        const bannerObserver = new IntersectionObserver(handleIntersection, observerOptions);
+
+        if (bannerRef.current) {
+            bannerObserver.observe(bannerRef.current);
+        }
+
+        return () => {
+            if (bannerRef.current) {
+                bannerObserver.unobserve(bannerRef.current);
+            }
+        };
+    }, []);
     return (
-        <main class="my-5">
-            <div class="container pb-5">
-                <div class="row pb-lg-5">
-                    <div class="col-lg-6">
-                        <h1 class="fw-bold align-middle font-orange display-5 pt-5">Dissertation Help That Will Sift Away Your Academic Troubles!</h1>
-                        <p class="font-cursive pb-5">Feeling overwhelmed with your upcoming dissertation submissions? With Dissertation Help by your side, there is nothing to worry about anymore! Our exclusive help with dissertation services are specifically curated to help you out for urgent requirements especially when the deadline is just a few weeks away. So, don't stress out, ask for online dissertation help today!</p>
-                        <div className="d-flex align-items-center justify-content-around">
-                            <div>
-                                <Link to="" class="primary-btn py-2 px-4 fs-5 rounded-pill">Get Started</Link>
-                            </div>
-                            <img src="./assets/img/flyer.webp" width="150px" class="flyer" alt="" />
+        <>
+            <header>
+                <nav className={`navbar navbar-expand-lg px-lg-5 ${isNavbarSticky ? 'shadow-sm bg-white fixed-top' : ''}`} ref={navbarRef} id="navbar">
+                    <div className="container-fluid">
+                        <a className="navbar-brand" href="/"><img src="./assets/img/dissertationhelp-logo.svg" width="150px" alt="Dissertation Help" loading='lazy' /></a>
+                        <button className="navbar-toggler" type="button" id="navButton" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span className="navbar-toggler-icon"></span>
+                        </button>
+                        <div className="collapse navbar-collapse flex-column" id="navbarSupportedContent">
+                            <ul className="navbar-nav ms-auto mb- mb-lg-0">
+                                <li className="nav-item ">
+                                    <a className="nav-link active" onClick={closeNav} aria-current="page" href="#services" role="button" >
+                                        <span className="me-1"><i className="fa-solid fa-book"></i></span>Services
+                                    </a>
+                                </li>
+                                <li className="nav-item">
+                                    <a className="nav-link active" onClick={closeNav} aria-current="page" href="#features"> <span className="me-1"><i className="fa-solid fa-wand-magic-sparkles"></i></span>Features</a>
+                                </li>
+                                <li className="nav-item">
+                                    <a className="nav-link active" onClick={closeNav} aria-current="page" href="#benefits"><span className="me-1"><i className="fa-solid fa-blog"></i></span>Benefits</a>
+                                </li>
+                                <li className="nav-item">
+                                    <a className="nav-link active" onClick={closeNav} aria-current="page" href="#about"><span className="me-1"><i className="fa-solid fa-user"></i></span>About Us</a>
+                                </li>
+                                <li className="nav-item">
+                                    <a className="nav-link active" onClick={closeNav} aria-current="page" href="#reviews"><span className="me-1"><i className="fa-regular fa-circle-question"></i></span>Reviews</a>
+                                </li>
+                                <li className="nav-item">
+                                    <a className="nav-link active" onClick={closeNav} aria-current="page" href="#contact"><span className="me-1"><i className="fa-solid fa-headphones"></i></span>Contact Us</a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="col-lg-6 position-relative">
-                        <img src="./assets/img/gradient.webp" class="gradient-1" alt="" />
+                </nav>
+            </header>
+            <main class="my-5">
+                <div class="container pb-5" ref={bannerRef}>
+                    <div class="row pb-lg-5">
+                        <div class="col-lg-6">
+                            <h1 class="fw-bold align-middle font-orange display-5 pt-5">Dissertation Help That Will Sift Away Your Academic Troubles!</h1>
+                            <p class="font-cursive pb-5">Feeling overwhelmed with your upcoming dissertation submissions? With Dissertation Help by your side, there is nothing to worry about anymore! Our exclusive help with dissertation services are specifically curated to help you out for urgent requirements especially when the deadline is just a few weeks away. So, don't stress out, ask for online dissertation help today!</p>
+                            <div className="d-flex align-items-center justify-content-around">
+                                <div>
+                                    <Link to="order" class="primary-btn py-2 px-4 fs-5 rounded-pill">Get Started</Link>
+                                </div>
+                                <img src="./assets/img/flyer.webp" width="150px" class="flyer" loading='lazy' alt="flyer" />
+                            </div>
+                        </div>
+                        <div class="col-lg-6 position-relative">
+                            <div className="row justify-content-center">
+                                <div className="col-lg-8">
+                                    <Form />
+                                </div>
+                            </div>
+                            <img src="./assets/img/gradient.webp" class="gradient-1" loading='lazy' alt="gradient" />
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            {/* Social Proofs */}
-            <div className="container-fluid social-proof px-5 my-5 py-5">
-                <div className="container pb-5">
-                    <h2 className='text-center fw-semibold fs-1 mb-5'>Our Ratings</h2>
-                    <div className="row row-cols-1 row-cols-md-2 row-cols-lg-5 g-2 ">
-                        <div className="col">
-                            <div className="rating-card p-2 p-lg-4">
-                                <p className='fs-1 fw-normal text-center mb-1'>4.8/5</p>
-                                <p className='text-warning text-center'>
-                                    <span><i className='fa fa-star'></i></span>
-                                    <span><i className='fa fa-star'></i></span>
-                                    <span><i className='fa fa-star'></i></span>
-                                    <span><i className='fa fa-star'></i></span>
-                                    <span><i className='fa fa-star'></i></span>
-                                </p>
-                                <p className="text-center">5000+ Students</p>
-                                <hr />
-                                <div className="text-center">
-                                    <img src="./assets/img/google.webp" width={120} className='mx-auto' alt="" />
+                {/* Social Proofs */}
+                <div className="container-fluid social-proof px-5 my-5 pt-5 pb-4">
+                    <div className="container pb-5">
+                        <h2 className='text-center fw-semibold fs-1 mb-5'>Our Ratings</h2>
+                        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-5 g-2 ">
+                            <div className="col">
+                                <div className="rating-card p-2 p-lg-4">
+                                    <p className='fs-1 fw-normal text-center mb-1'>4.8/5</p>
+                                    <p className='text-warning text-center'>
+                                        <span><i className='fa fa-star'></i></span>
+                                        <span><i className='fa fa-star'></i></span>
+                                        <span><i className='fa fa-star'></i></span>
+                                        <span><i className='fa fa-star'></i></span>
+                                        <span><i className='fa fa-star'></i></span>
+                                    </p>
+                                    <p className="text-center">5000+ Students</p>
+                                    <hr />
+                                    <div className="text-center">
+                                        <img src="./assets/img/google.webp" width={120} className='mx-auto' loading='lazy' alt="google" />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="col">
-                            <div className="rating-card p-2 p-lg-4">
-                                <p className='fs-1 fw-normal text-center mb-1'>5/5</p>
-                                <p className='text-warning text-center'>
-                                    <span><i className='fa fa-star'></i></span>
-                                    <span><i className='fa fa-star'></i></span>
-                                    <span><i className='fa fa-star'></i></span>
-                                    <span><i className='fa fa-star'></i></span>
-                                    <span><i className='fa fa-star'></i></span>
-                                </p>
-                                <p className="text-center">1000+ Students</p>
-                                <hr />
-                                <div className="text-center">
-                                    <img src="./assets/img/trustpilot.svg" width={120} height={50} className='mx-auto' alt="" />
+                            <div className="col">
+                                <div className="rating-card p-2 p-lg-4">
+                                    <p className='fs-1 fw-normal text-center mb-1'>5/5</p>
+                                    <p className='text-warning text-center'>
+                                        <span><i className='fa fa-star'></i></span>
+                                        <span><i className='fa fa-star'></i></span>
+                                        <span><i className='fa fa-star'></i></span>
+                                        <span><i className='fa fa-star'></i></span>
+                                        <span><i className='fa fa-star'></i></span>
+                                    </p>
+                                    <p className="text-center">1000+ Students</p>
+                                    <hr />
+                                    <div className="text-center">
+                                        <img src="./assets/img/trustpilot.svg" width={120} height={50} className='mx-auto' loading='lazy' alt="trustpilot" />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="col">
-                            <div className="rating-card p-2 p-lg-4">
-                                <p className='fs-1 fw-normal text-center mb-1'>4.9/5</p>
-                                <p className='text-warning text-center'>
-                                    <span><i className='fa fa-star'></i></span>
-                                    <span><i className='fa fa-star'></i></span>
-                                    <span><i className='fa fa-star'></i></span>
-                                    <span><i className='fa fa-star'></i></span>
-                                    <span><i className='fa fa-star'></i></span>
-                                </p>
-                                <p className="text-center">1500+ Students</p>
-                                <hr />
-                                <div className="text-center">
-                                    <img src="./assets/img/sitejabber.svg" width={140} height={50} className='py-2' alt="" />
+                            <div className="col">
+                                <div className="rating-card p-2 p-lg-4">
+                                    <p className='fs-1 fw-normal text-center mb-1'>4.9/5</p>
+                                    <p className='text-warning text-center'>
+                                        <span><i className='fa fa-star'></i></span>
+                                        <span><i className='fa fa-star'></i></span>
+                                        <span><i className='fa fa-star'></i></span>
+                                        <span><i className='fa fa-star'></i></span>
+                                        <span><i className='fa fa-star'></i></span>
+                                    </p>
+                                    <p className="text-center">1500+ Students</p>
+                                    <hr />
+                                    <div className="text-center">
+                                        <img src="./assets/img/sitejabber.svg" width={140} height={50} className='py-2' loading='lazy' alt="sitejabber" />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="col">
-                            <div className="rating-card p-2 p-lg-4">
-                                <p className='fs-1 fw-normal text-center mb-1'>4.9/5</p>
-                                <p className='text-warning text-center'>
-                                    <span><i className='fa fa-star'></i></span>
-                                    <span><i className='fa fa-star'></i></span>
-                                    <span><i className='fa fa-star'></i></span>
-                                    <span><i className='fa fa-star'></i></span>
-                                    <span><i className='fa fa-star'></i></span>
-                                </p>
-                                <p className="text-center">500+ Students</p>
-                                <hr />
-                                <div className="text-center">
-                                    <img src="./assets/img/capterra.svg" width={140} height={50} className='py-2' alt="" />
+                            <div className="col">
+                                <div className="rating-card p-2 p-lg-4">
+                                    <p className='fs-1 fw-normal text-center mb-1'>4.9/5</p>
+                                    <p className='text-warning text-center'>
+                                        <span><i className='fa fa-star'></i></span>
+                                        <span><i className='fa fa-star'></i></span>
+                                        <span><i className='fa fa-star'></i></span>
+                                        <span><i className='fa fa-star'></i></span>
+                                        <span><i className='fa fa-star'></i></span>
+                                    </p>
+                                    <p className="text-center">500+ Students</p>
+                                    <hr />
+                                    <div className="text-center">
+                                        <img src="./assets/img/capterra.svg" width={140} height={50} className='py-2' loading='lazy' alt="capterra" />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="col">
-                            <div className="rating-card p-2 p-lg-4">
-                                <p className='fs-1 fw-normal text-center mb-1'>4.7/5</p>
-                                <p className='text-warning text-center'>
-                                    <span><i className='fa fa-star'></i></span>
-                                    <span><i className='fa fa-star'></i></span>
-                                    <span><i className='fa fa-star'></i></span>
-                                    <span><i className='fa fa-star'></i></span>
-                                    <span><i className='fa fa-star'></i></span>
-                                </p>
-                                <p className="text-center">800+ Students</p>
-                                <hr />
-                                <div className="text-center">
-                                    <img src="./assets/img/reviewcenter.svg" width={140} height={50} className='py-2' alt="" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {/* Section 1 */}
-            <div class="mt-5 pb-5">
-                <div className="container">
-                    <h2 class="fs-1 fw-600 primary-text mb-2">Our Dissertation Help Online Features</h2>
-                    <p className='mb-3'>Our experts don't just provide help with dissertations, there are a lot many amenities you get to enjoy when you seek assistance from us.</p>
-                </div>
-                <div className="container-xxl benefits mb-5">
-                    <div className="row row-cols-1 row-cols-lg-3 g-3">
-                        <div className="col">
-                            <div className="benefits-box">
-                                <img src="./assets/img/icon1.png" width="180px" height="180px" alt="" />
-                                <div className="benefits-content rounded-4 p-4 pt-5">
-                                    <h3 className='fw-normal fs-4'>24/7 Assistance</h3>
-                                    <p className='fs-6 '>We understand that a student may need the help of reliable dissertation writing services at any time during the day. This is why we keep our help with dissertations window open 24/7! If you require instant dissertation help in the middle of the night, feel free to connect with our live chat feature and our experts will be there to take your requirements within minutes!</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col">
-                            <div className="benefits-box">
-                                <img src="./assets/img/icon2.png" width="180px" height="180px" alt="" />
-                                <div className="benefits-content rounded-4 p-4 pt-5">
-                                    <h3 className='fw-normal fs-4'>Custom Dissertation Help</h3>
-                                    <p className='fs-6 '>Every individual is unique and so are their dissertation requirements. Keeping every perspective in mind, we serve our customers with an option to receive custom dissertation help according to their needs.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col">
-                            <div className="benefits-box">
-                                <img src="./assets/img/icon3.png" width="180px" height="180px" alt="" />
-                                <div className="benefits-content rounded-4 p-4 pt-5">
-                                    <h3 className='fw-normal fs-4'>Urgent Dissertation Help</h3>
-                                    <p className='fs-6 '>With the help of our excellent dissertation writers, you can now receive your requirements even on an urgent basis! If you are a few days away from your deadline, there is nothing to panic about. We will assign you the best dissertation writer so that you can relax while our experts speed up the dissertation writing process! </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col">
-                            <div className="benefits-box">
-                                <img src="./assets/img/icon4.png" width="180px" height="180px" alt="" />
-                                <div className="benefits-content rounded-4 p-4 pt-5">
-                                    <h3 className='fw-normal fs-4'>AI and Plagiarism Free Content</h3>
-                                    <p className='fs-6 '>Our online dissertation help ensures to provide you with a quality dissertation that has been first-handly researched by our experts and freshly written by our writers. Hiring our Dissertation Help will provide you with 100% plagiarism and AI-free solutions even if your deadline is just a few days away!</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col">
-                            <div className="benefits-box">
-                                <img src="./assets/img/icon5.png" width="180px" height="180px" alt="" />
-                                <div className="benefits-content rounded-4 p-4 pt-5">
-                                    <h3 className='fw-normal fs-4'>Free Revisions</h3>
-                                    <p className='fs-6 '>Knowing that every individual has a different perspective, we understand that you might require a few changes after you have a look at the final draft created by our dissertation writer. To give you a stress free experience, we offer all our customers with a free unlimited revision feature! </p>
+                            <div className="col">
+                                <div className="rating-card p-2 p-lg-4">
+                                    <p className='fs-1 fw-normal text-center mb-1'>4.7/5</p>
+                                    <p className='text-warning text-center'>
+                                        <span><i className='fa fa-star'></i></span>
+                                        <span><i className='fa fa-star'></i></span>
+                                        <span><i className='fa fa-star'></i></span>
+                                        <span><i className='fa fa-star'></i></span>
+                                        <span><i className='fa fa-star'></i></span>
+                                    </p>
+                                    <p className="text-center">800+ Students</p>
+                                    <hr />
+                                    <div className="text-center">
+                                        <img src="./assets/img/reviewcenter.svg" width={140} height={50} className='py-2' loading='lazy' alt="reviewcenter" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            {/* Section 1 End */}
 
-            {/* Section 2 */}
-            <div class="mt-5 pb-5">
-                <div className="container">
-                    <h2 class="fs-1 fw-600 primary-text">How To Order Our Dissertation Help Service?</h2>
-                    <p>Want to get dissertation writing help right away? Our 3-step easy to order process will take just 5 minutes for you to begin your journey to achieve success!</p>
-                </div>
-                <div className="process-container d-flex align-items-center">
+                {/* Section 1 */}
+                <div class="mt-5 pb-5" id='features'>
                     <div className="container">
-                        <div className="row row-cols-1 row-cols-lg-3 g-5">
-                            <div className="col mt-0">
-                                <div className="process-card p-4">
-                                    <h3 className='mb-4'>1. Share Your Requirements</h3>
-                                    <p className="ps-4">To get help with dissertation from Ph.D. experts, fill out the form and mention every detail you would like to care about while working on your dissertation, for example dissertation topic, deadline, etc.</p>
+                        <h2 class="fs-1 fw-600 primary-text mb-2">Our Dissertation Help Online Features</h2>
+                        <p className='mb-3'>Our experts don't just provide help with dissertations, there are a lot many amenities you get to enjoy when you seek assistance from us.</p>
+                    </div>
+                    <div className="container-xxl benefits mb-5">
+                        <div className="row row-cols-1 row-cols-lg-3 g-3">
+                            <div className="col">
+                                <div className="benefits-box">
+                                    <img src="./assets/img/icon1.png" width="180px" height="180px" loading='lazy' alt="Assistance" />
+                                    <div className="benefits-content rounded-4 p-4 pt-5">
+                                        <h3 className='fw-normal fs-4'>24/7 Assistance</h3>
+                                        <p className='fs-6 '>We understand that a student may need the help of reliable dissertation writing services at any time during the day. This is why we keep our help with dissertations window open 24/7! If you require instant dissertation help in the middle of the night, feel free to connect with our live chat feature and our experts will be there to take your requirements within minutes!</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="col mt-0">
-                                <div className="process-card p-4">
-                                    <h3 className='mb-4'>2. Make The Payment</h3>
-                                    <p className="ps-4">Once you have provided us with all the details, the next step is to make the payment. Our Dissertation Help services assist all the customers and give them the option to pay through a payment mode they are comfortable with. </p>
+                            <div className="col">
+                                <div className="benefits-box">
+                                    <img src="./assets/img/icon2.png" width="180px" height="180px" loading='lazy' alt="Custom Help" />
+                                    <div className="benefits-content rounded-4 p-4 pt-5">
+                                        <h3 className='fw-normal fs-4'>Custom Dissertation Help</h3>
+                                        <p className='fs-6 '>Every individual is unique and so are their dissertation requirements. Keeping every perspective in mind, we serve our customers with an option to receive custom dissertation help according to their needs.</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="col mt-0">
-                                <div className="process-card p-4">
-                                    <h3 className='mb-4'>3. Download Your Ready To Submit Solution</h3>
-                                    <p className="ps-4">As soon as you initiate the payment, we are ready to process your order. Assigning the best available dissertation writer according to your requirements, we will ensure to provide a ready to download document via your registered email.</p>
+                            <div className="col">
+                                <div className="benefits-box">
+                                    <img src="./assets/img/icon3.png" width="180px" height="180px" loading='lazy' alt="Urgent Dissertation" />
+                                    <div className="benefits-content rounded-4 p-4 pt-5">
+                                        <h3 className='fw-normal fs-4'>Urgent Dissertation Help</h3>
+                                        <p className='fs-6 '>With the help of our excellent dissertation writers, you can now receive your requirements even on an urgent basis! If you are a few days away from your deadline, there is nothing to panic about. We will assign you the best dissertation writer so that you can relax while our experts speed up the dissertation writing process! </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col">
+                                <div className="benefits-box">
+                                    <img src="./assets/img/icon5.png" width="180px" height="180px" loading='lazy' alt="AI and Plagiarism Free" />
+                                    <div className="benefits-content rounded-4 p-4 pt-5">
+                                        <h3 className='fw-normal fs-4'>AI and Plagiarism Free Content</h3>
+                                        <p className='fs-6 '>Our online dissertation help ensures to provide you with a quality dissertation that has been first-handly researched by our experts and freshly written by our writers. Hiring our Dissertation Help will provide you with 100% plagiarism and AI-free solutions even if your deadline is just a few days away!</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col">
+                                <div className="benefits-box">
+                                    <img src="./assets/img/icon4.png" width="180px" height="180px" loading='lazy' alt="Free Revisions" />
+                                    <div className="benefits-content rounded-4 p-4 pt-5">
+                                        <h3 className='fw-normal fs-4'>Free Revisions</h3>
+                                        <p className='fs-6 '>Knowing that every individual has a different perspective, we understand that you might require a few changes after you have a look at the final draft created by our dissertation writer. To give you a stress free experience, we offer all our customers with a free unlimited revision feature! </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col">
+                                <div className="benefits-box">
+                                    <img src="./assets/img/icon6.png" width="180px" height="180px" loading='lazy' alt="Expedient delivery" />
+                                    <div className="benefits-content rounded-4 p-4 pt-5">
+                                        <h3 className='fw-normal fs-4'>Expedient delivery</h3>
+                                        <p className='fs-6 '>Knowing that every individual has a different perspective, we understand that you might require a few changes after you have a look at the final draft created by our dissertation writer. To give you a stress free experience, we offer all our customers with a free unlimited revision feature! </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            {/* Section 2 End */}
+                {/* Section 1 End */}
 
-            {/* Section 3 */}
-            <div className="container py-5">
-                <h2 className='mb-5'>Why Choose Professional Dissertation Writing Help?</h2>
-                <ul className='list-unstyled d-flex flex-wrap mb-5'>
-                    {
-                        data?.map((element, index) => (
-                            <li className='benefits-list mx-3 ' key={index}>{element.content}</li>
-                        ))
-                    }
-                </ul>
-            </div>
-            {/* Section 3 End */}
-
-            {/* section 4 */}
-            <div className="container">
-                <div className="tab-section mb-4 pb-5 ">
-                    <nav className="d-flex justify-content-center" data-wow-delay="0.3s">
-                        <div className="nav nav-tabs align-items-baseline justify-content-center" id="nav-tab"
-                            role="tablist">
-                            <button className="nav-link active" id="nav-SectionOne-tab" data-bs-toggle="tab"
-                                data-bs-target="#nav-SectionOne" type="button" role="tab"
-                                aria-controls="nav-SectionOne" aria-selected="false">
-                                <h2 className='fs-5'>When Do You Require Online Dissertation Help UK?</h2>
-                            </button>
-
-                            <button className="nav-link" id="nav-SectionTwo-tab" data-bs-toggle="tab"
-                                data-bs-target="#nav-SectionTwo" type="button" role="tab"
-                                aria-controls="nav-SectionTwo" aria-selected="false">
-                                <f2 className="fs-5">5 Reasons To Choose Our Online Dissertation help</f2>
-                            </button>
-                        </div>
-                    </nav>
-
-                    <div className="tab-content mt-5 wow fadeInRight" id="nav-tabContent" data-wow-delay="0.5s">
-                        <div className="tab-pane fade show active" id="nav-SectionOne" role="tabpanel"
-                            aria-labelledby="nav-SectionOne-tab">
-                            <p>We provide Dissertation help online in case </p>
-                            <ul>
-                                <li>Not getting enough time for other tasks. Don't worry; seek help from our dissertation writing experts. We ensure that all your dissertation panic vanishes with our dissertation help online.</li>
-                                <li>Is the lack of motivation not allowing you to work on a dissertation? With the best dissertation online help, get rid of all the dissertation worries.</li>
-                                <li>Sometimes you aren't interested enough in your dissertations due to all the tiring work that needs to be done. Our Dissertation writer works hard to prepare the dissertations for you.</li>
-                                <li>Sometimes you start with the dissertation and end up nowhere. Don't worry, our dissertation help expert will complete your dissertation from wherever you left off.</li>
-                            </ul>
-                            <p>Our dissertation writing service will ease the pressure from your shoulders and provide you with a sense of relief.</p>
-                        </div>
-
-                        <div className="tab-pane fade" id="nav-SectionTwo" role="tabpanel"
-                            aria-labelledby="nav-SectionTwo-tab">
-                            <ul>
-                                <li>2500+ Ph.D. level dissertation experts who are well suited for the job.</li>
-                                <li>More than 10,000+ students received our online dissertation help this year and we hope to double this amount in the years to come.</li>
-                                <li>We prioritize 100% customer satisfaction. In the rare instance that you are not satisfied with the work done, our dissertation helpers provide unlimited revisions. </li>
-                                <li>1500+ dissertations completed in a month by our dissertation expert and we look forward to increasing this number.</li>
-                                <li>A user rating of 4.9 out of 5 based on 1000+ plus users of our dissertation help online is itself proof of how much you trust the amount of hard work and the resources we use to get the dissertations done on time.</li>
-                            </ul>
+                {/* Section 2 */}
+                <div class="mt-4">
+                    <div className="container">
+                        <h2 class="fs-1 fw-600 primary-text">How To Order Our Dissertation Help Service?</h2>
+                        <p>Want to get dissertation writing help right away? Our 3-step easy to order process will take just 5 minutes for you to begin your journey to achieve success!</p>
+                    </div>
+                    <div className="process-container d-flex align-items-center">
+                        <div className="container">
+                            <div className="row row-cols-1 row-cols-lg-3 g-0 g-lg-5">
+                                <div className="col mt-0">
+                                    <div className="process-card px-4 py-2 py-lg-4">
+                                        <h3 className='mb-4'>1. Share Your Requirements</h3>
+                                        <p className="ps-4 mb-0">To get help with dissertation from Ph.D. experts, fill out the form and mention every detail you would like to care about while working on your dissertation, for example dissertation topic, deadline, etc.</p>
+                                    </div>
+                                </div>
+                                <div className="col mt-0">
+                                    <div className="process-card px-4 py-2 py-lg-4">
+                                        <h3 className='mb-4'>2. Make The Payment</h3>
+                                        <p className="ps-4 mb-0">Once you have provided us with all the details, the next step is to make the payment. Our Dissertation Help services assist all the customers and give them the option to pay through a payment mode they are comfortable with. </p>
+                                    </div>
+                                </div>
+                                <div className="col mt-0">
+                                    <div className="process-card px-4 py-2 py-lg-4">
+                                        <h3 className='mb-4'>3. Download Your Ready To Submit Solution</h3>
+                                        <p className="ps-4 mb-0">As soon as you initiate the payment, we are ready to process your order. Assigning the best available dissertation writer according to your requirements, we will ensure to provide a ready to download document via your registered email.</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            {/* section 4 End */}
+                {/* Section 2 End */}
 
-            <div className="pb-5">
+                {/* Section 3 */}
+                <div className="container pb-5 pt-4" id='benefits'>
+                    <h2 className='mb-5'>Why Choose Professional Dissertation Writing Help?</h2>
+                    <ul className='list-unstyled d-flex flex-wrap mb-5'>
+                        {
+                            data?.map((element, index) => (
+                                <li className='benefits-list mx-3 ' key={index}>{element.content}</li>
+                            ))
+                        }
+                    </ul>
+                </div>
+                {/* Section 3 End */}
+
+                {/* section 4 */}
                 <div className="container">
-                    <h2 className='fs-1 fw-semibold mb-5'>What Do We Provide When You Ask Us to “Do My Dissertation”?</h2>
-                    <div className="container-fluid ">
-                        <ServiceCarousel item={Service} />
-                    </div>
-                </div>
-            </div>
+                    <div className="tab-section mb-4 pb-5 ">
+                        <nav className="d-flex justify-content-center" data-wow-delay="0.3s">
+                            <div className="nav nav-tabs align-items-baseline justify-content-center" id="nav-tab"
+                                role="tablist">
+                                <button className="nav-link active" id="nav-SectionOne-tab" data-bs-toggle="tab"
+                                    data-bs-target="#nav-SectionOne" type="button" role="tab"
+                                    aria-controls="nav-SectionOne" aria-selected="false">
+                                    <h2 className='fs-5'>When Do You Require Online Dissertation Help UK?</h2>
+                                </button>
 
-            <div className="container pb-5 mb-5">
-                <h2 className='mb-3'>Subjects Our Dissertation Writing Services Have Catered To Before!</h2>
-                <p className='fs-5'>We hire dissertation writers from within the field so that when you give us your order, we can provide personalized assistance in subjects like:</p>
-                <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 gy-4 pt-5">
-                {
-                    services2?.map((element, index) => (
-                        <div className="col">
-                            <div className="services-card" key={index}>
-                            <img src="./assets/img/right-arrow.png" alt="right arrow" />
-                            <h3 className='ms-3 fs-5 fw-normal'>{element} dissertation help</h3>
-                        </div>
-                        </div>
-                    ))
-                }
-                </div>
-            </div>
+                                <button className="nav-link" id="nav-SectionTwo-tab" data-bs-toggle="tab"
+                                    data-bs-target="#nav-SectionTwo" type="button" role="tab"
+                                    aria-controls="nav-SectionTwo" aria-selected="false">
+                                    <h2 className="fs-5">5 Reasons To Choose Our Online Dissertation help</h2>
+                                </button>
+                            </div>
+                        </nav>
 
-            <div className="container">
-                <h2>FAQs</h2>
-                <div className="row g-5">
-                    <div className="col-lg-4 p-4">
-                        <img src="./assets/img/faqs.webp" alt="" />
-                    </div>
-                    <div className="col-lg-8 my-auto pt-5">
-                        <FaqsAccordion data={faqs} />
-                    </div>
-                </div>
-            </div>
+                        <div className="tab-content mt-5 wow fadeInRight" id="nav-tabContent" data-wow-delay="0.5s">
+                            <div className="tab-pane fade show active" id="nav-SectionOne" role="tabpanel"
+                                aria-labelledby="nav-SectionOne-tab">
+                                <p>We provide Dissertation help online in case </p>
+                                <ul>
+                                    <li>Not getting enough time for other tasks. Don't worry; seek help from our dissertation writing experts. We ensure that all your dissertation panic vanishes with our dissertation help online.</li>
+                                    <li>Is the lack of motivation not allowing you to work on a dissertation? With the best dissertation online help, get rid of all the dissertation worries.</li>
+                                    <li>Sometimes you aren't interested enough in your dissertations due to all the tiring work that needs to be done. Our Dissertation writer works hard to prepare the dissertations for you.</li>
+                                    <li>Sometimes you start with the dissertation and end up nowhere. Don't worry, our dissertation help expert will complete your dissertation from wherever you left off.</li>
+                                </ul>
+                                <p>Our dissertation writing service will ease the pressure from your shoulders and provide you with a sense of relief.</p>
+                            </div>
 
-            <div className="container my-5 py-4">
-                <div className="gradient-box p-5">
-                <h2 className='text-center mb-3'>Why Do We Call Our Dissertation Help Services Unique?</h2>
-                <p className='text-center text-white fs-5 fw-200'>What makes our dissertation assignment help truly unique is the unwavering commitment of our experts to help you achieve success. The secret ingredient to our excellent assistance is personalized attention and a deep understanding of your requirements along with the inputs of our Ph.D. writers honing great experience and expertise. Our dissertation writing service not just writes for you or guides you towards the right path, they empower you to excel! This dedication and passion to help you grow and reach the doorstep of success without facing any hurdles is what sets us apart from other dissertation Help Services</p>
-                </div>
-            </div>
-
-            <div className="container my-5 py-4">
-                <h2>About Us</h2>
-                <p>Our dissertation help has a trusted name in the dissertation writing industry. We have been delivering help with dissertation for more than a decade. The motive behind the establishment of our online dissertation help has always been helping students from different domains with excellent dissertation writing. We are a group of capable dissertation experts from different academic fields with excellent knowledge of the subject. We have 2500+ PhD-level dissertation writers who have helped 10000+ students in the past decade.</p>
-                <p>Indeed, those are breathtaking numbers alright, and yet our online dissertation writing expert thinks there is more to be achieved. We have a competent team of dissertation writer that helps students, and in turn, makes finer work faster and more effective. For this purpose, we as a dissertation help shall emphasize technical excellence, applied science, and excellent client service as we strive to scale new heights that will surpass previous performance levels where we will execute our duties intensely and gracefully. Don’t worry; we will remain your trusted companion throughout your academic journey.</p>
-            </div>
-
-            <div className="reviews-container pt-5">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-lg-5">
-                            <img src="./assets/img/reviews.svg" alt="" />
-                        </div>
-                        <div className="col-lg-7 my-auto">
-                            <h2 className='ps-0 ps-lg-4 my-4 fs-1'>Check What Our Client Says</h2>
-                            <ReviewCarousel item={reviews} />
+                            <div className="tab-pane fade" id="nav-SectionTwo" role="tabpanel"
+                                aria-labelledby="nav-SectionTwo-tab">
+                                <ul>
+                                    <li>2500+ Ph.D. level dissertation experts who are well suited for the job.</li>
+                                    <li>More than 10,000+ students received our online dissertation help this year and we hope to double this amount in the years to come.</li>
+                                    <li>We prioritize 100% customer satisfaction. In the rare instance that you are not satisfied with the work done, our dissertation helpers provide unlimited revisions. </li>
+                                    <li>1500+ dissertations completed in a month by our dissertation expert and we look forward to increasing this number.</li>
+                                    <li>A user rating of 4.9 out of 5 based on 1000+ plus users of our dissertation help online is itself proof of how much you trust the amount of hard work and the resources we use to get the dissertations done on time.</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+                {/* section 4 End */}
 
-        </main>
+                <div className="pb-5" id='services'>
+                    <div className="container">
+                        <h2 className='fs-1 fw-semibold mb-5'>What Do We Provide When You Ask Us to “Do My Dissertation”?</h2>
+                        <div className="container-fluid ">
+                            <ServiceCarousel item={Service} />
+                        </div>
+                    </div>
+                </div>
+
+                <div className="container pb-5 mb-5">
+                    <h2 className='mb-3'>Subjects Our Dissertation Writing Services Have Catered To Before!</h2>
+                    <p className='fs-5'>We hire dissertation writers from within the field so that when you give us your order, we can provide personalized assistance in subjects like:</p>
+                    <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 gy-4 pt-5">
+                        {
+                            services2?.map((element, index) => (
+                                <div className="col">
+                                    <div className="services-card" key={index}>
+                                        <img src="./assets/img/right-arrow.png" loading='lazy' alt="right arrow" />
+                                        <h3 className='ms-3 fs-5 fw-normal'>{element} dissertation help</h3>
+                                    </div>
+                                </div>
+                            ))
+                        }
+                    </div>
+                </div>
+
+                <div className="container" id='faqs'>
+                    <h2>FAQs</h2>
+                    <div className="row g-5">
+                        <div className="col-lg-4 p-4">
+                            <img src="./assets/img/faqs.webp" loading='lazy' alt="faqs" />
+                        </div>
+                        <div className="col-lg-8 my-auto pt-5">
+                            <FaqsAccordion data={faqs} />
+                        </div>
+                    </div>
+                </div>
+
+                <div className="container my-5 py-4">
+                    <div className="gradient-box p-5">
+                        <h2 className='text-center mb-3'>Why Do We Call Our Dissertation Help Services Unique?</h2>
+                        <p className='text-center text-white fs-5 fw-200'>What makes our dissertation assignment help truly unique is the unwavering commitment of our experts to help you achieve success. The secret ingredient to our excellent assistance is personalized attention and a deep understanding of your requirements along with the inputs of our Ph.D. writers honing great experience and expertise. Our dissertation writing service not just writes for you or guides you towards the right path, they empower you to excel! This dedication and passion to help you grow and reach the doorstep of success without facing any hurdles is what sets us apart from other dissertation Help Services</p>
+                    </div>
+                </div>
+
+                <div className="container my-5 py-4" id='about'>
+                    <h2>About Us</h2>
+                    <p>Our dissertation help has a trusted name in the dissertation writing industry. We have been delivering help with dissertation for more than a decade. The motive behind the establishment of our online dissertation help has always been helping students from different domains with excellent dissertation writing. We are a group of capable dissertation experts from different academic fields with excellent knowledge of the subject. We have 2500+ PhD-level dissertation writers who have helped 10000+ students in the past decade.</p>
+                    <p>Indeed, those are breathtaking numbers alright, and yet our online dissertation writing expert thinks there is more to be achieved. We have a competent team of dissertation writer that helps students, and in turn, makes finer work faster and more effective. For this purpose, we as a dissertation help shall emphasize technical excellence, applied science, and excellent client service as we strive to scale new heights that will surpass previous performance levels where we will execute our duties intensely and gracefully. Don’t worry; we will remain your trusted companion throughout your academic journey.</p>
+                </div>
+
+                <div className="reviews-container pt-5" id='reviews'>
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-lg-5">
+                                <img src="./assets/img/reviews.svg" loading='lazy' alt="reviews" />
+                            </div>
+                            <div className="col-lg-7 my-auto">
+                                <h2 className='ps-0 ps-lg-4 my-4 fs-1'>Check What Our Client Says</h2>
+                                <ReviewCarousel item={reviews} />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+        </>
     )
 }

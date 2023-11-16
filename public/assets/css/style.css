@@ -7,6 +7,7 @@
 
 body {
     background-color: #f5f4f4 !important;
+    overflow-x: hidden;
 }
 
 .navbar-nav li a {
@@ -22,7 +23,7 @@ p {
 }
 
 footer {
-    background-color: var(--primary);
+    background: var(--primary-gradient);
 }
 
 .social i {
@@ -123,6 +124,17 @@ footer {
         min-height: 320px;
     }
 
+}
+@media screen and (max-width:768px){
+    .gradient-1 {
+        width: 90%;
+    }
+    .nav-tabs{
+        border-radius: 50px!important;
+    }
+    .process-card{
+        height: auto!important;
+    }
 }
 
 .benefits-content h3 {
@@ -247,6 +259,8 @@ p {
     width: 30px;
     margin: 0px auto;
     text-align: center;
+    position: relative;
+    z-index: 999;
 }
 
 .whatsAppCTAWrp p a {
@@ -405,7 +419,7 @@ span.whatsAppText {
 
 .nav-tabs {
     background-color: white;
-    border-radius: 100px !important;
+    border-radius: 100px;
     border: 1px solid #2f2f2f !important;
     padding: 15px !important;
 }
@@ -487,4 +501,8 @@ span.whatsAppText {
 
 .fw-200{
     font-weight: 200!important;
+}
+
+.navbar{
+    transition: all 0.2s ease;
 }

@@ -6,11 +6,11 @@ export default function FaqsAccordion({data}) {
             {
                 data?.map((element, index) => (
                     <div class="accordion-item" key={index}>
-                        <h2 class="accordion-header">
+                        <h3 class="accordion-header">
                             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target={`#${element.key}`} aria-expanded="true" aria-controls={element.key}>
-                                {element.title}
+                                <strong>{element.title}</strong>
                             </button>
-                        </h2>
+                        </h3>
                         <div id={element.key} class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                             <div class="accordion-body">
                                 {element.content}
